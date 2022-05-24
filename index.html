@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "jquery-ui-1.13.1/jquery-ui.min.css">
+    <link rel = "stylesheet" href = "jquery-ui-1.13.1/jquery-ui.structure.css">
+    <link rel = "stylesheet" href = "jquery-ui-1.13.1/jquery-ui.theme.css">
+    <link rel = "stylesheet" href = "jquery-ui-1.13.1/jquery-ui.css">
+    <link rel = "preconnect" href = "https://fonts.googleapis.com">
+    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
+    <link href = "https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel = "stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>my music opinions</title>
+</head>
+
+<script>
+
+    $( function() {
+        $( "#accordion" ).accordion({
+        collapsible: true
+        });
+    });
+
+    $( function() {
+        $( "#datepicker" ).datepicker();
+    });
+
+    $( function() {
+        var progressTimer,
+        progressbar = $( "#progressbar" ),
+        progressLabel = $( ".progress-label" ),
+        dialogButtons = [{
+        text: "Cancel Download",
+        click: closeDownload
+      }],
+        dialog = $( "#dialog" ).dialog({
+        autoOpen: false,
+        closeOnEscape: false,
+        resizable: false,
+        buttons: dialogButtons,
+        open: function() {
+            progressTimer = setTimeout( progress, 2000 );
+        },
+        beforeClose: function() {
+            downloadButton.button( "option", {
+            disabled: false,
+            label: "Start Download"
+            });
+        }
+      }),
+      downloadButton = $( "#downloadButton" )
+        .button()
+        .on( "click", function() {
+            $( this ).button( "option", {
+            disabled: true,
+            label: "Downloading..."
+            });
+            dialog.dialog( "open" );
+        });
+ 
+    progressbar.progressbar({
+        value: false,
+        change: function() {
+        progressLabel.text( "Current Progress: " + progressbar.progressbar( "value" ) + "%" );
+      },
+        complete: function() {
+        progressLabel.text( "Complete!" );
+        dialog.dialog( "option", "buttons", [{
+            text: "Close",
+            click: closeDownload
+        }]);
+        $(".ui-dialog button").last().trigger( "focus" );
+        }
+    });
+ 
+    function progress() {
+      var val = progressbar.progressbar( "value" ) || 0;
+ 
+      progressbar.progressbar( "value", val + Math.floor( Math.random() * 3 ) );
+ 
+      if ( val <= 99 ) {
+        progressTimer = setTimeout( progress, 50 );
+      }
+    }
+ 
+    function closeDownload() {
+      clearTimeout( progressTimer );
+      dialog
+        .dialog( "option", "buttons", dialogButtons )
+        .dialog( "close" );
+      progressbar.progressbar( "value", false );
+      progressLabel
+        .text( "Starting download..." );
+      downloadButton.trigger( "focus" );
+    }
+  } );
+
+</script>
+
+<style>
+    
+    body {
+        width: 100%;
+        margin: 0;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: #edd8cf;
+    }
+
+    .top5 {
+        text-align: center;
+        padding: 15px;
+        font-size: 35px;
+    }
+
+    #lr {
+        background-color: brown;
+        color: gold;
+    }
+
+    #igor {
+        background-color: hotpink;
+        color: black;
+    }
+
+    #end {
+        background-color: black;
+        color: limegreen;
+    }
+
+    #gkmc {
+        background-color: #2AA48D;
+        color: #2A7EA4;
+    }
+
+    #wlr {
+        background-color: black;
+        color: red;
+    }
+
+    .size {
+        font-size: 20px;
+    }
+
+    .alignimg {
+        margin-left: 500px;
+    }
+
+    #datepicker {
+        justify-content: center;
+    }
+
+    #progressbar {
+        margin-top: 20px;
+    }
+ 
+    .progress-label {
+        font-weight: bold;
+        text-shadow: 1px 1px 0 #fff;
+    }
+ 
+    .ui-dialog-titlebar-close {
+        display: none;
+    }
+
+</style>
+
+<body>
+
+    <div class = "top5">
+        my top 5 albums in no order
+    </div>
+
+    <div id = "accordion">
+
+        <h3 id = "lr">Late Registration</h3>
+        
+        <div>
+
+            <img src = "../JQUERY/firstPage images/Lateye.jpg" alt="Late Registration">
+        
+            <p class = "size">Late Registration is the second studio album by American rapper and producer Kanye West. It was released on August 30, 2005, through Def Jam Recordings and Roc-A-Fella Records. West recorded the album over the course of a year in sessions held at studios in Hollywood and New York City, in collaboration with record producer and film score composer Jon Brion. The recording sessions also featured guest contributions from Adam Levine, Jamie Foxx, Common, Brandy, Jay-Z, and Nas, among others.
+            West's production for Late Registration departed from the sped-up soul samples of his debut album The College Dropout, in favor of a more elaborate, orchestral, and eclectic sound. Drawing creative inspiration from alternative acts such as Fiona Apple and Portishead, he experimented with intricate sampling methods, string orchestration under Brion, and a variety of instruments not typically associated with hip hop or popular music, including celesta, harpsichord, analog synthesizers, and Chinese bells. In an effort to write authentic yet relatable lyrics, West explored both personal and broader sociopolitical concerns through storytelling devices and a persona marked by humor, enthusiasm, and lament. He also continued to examine his paradoxical relationship between Christian spiritual sense and market-capitalist freedom, resulting in topical songs that critique sources of inequality such as institutional racism, higher education, health care, drug trafficking, and the blood diamond trade.
+            Matching The College Dropout's commercial success, Late Registration debuted at number one on the US Billboard 200 and sold 860,000 copies in its first week. It eventually reached more than three million copies sold in the US and received a quadruple platinum certification from the Recording Industry Association of America (RIAA), as well as sales certifications in several other countries. Five singles were released to help market the album, including the international hits "Touch the Sky", "Heard 'Em Say", and "Gold Digger", the latter of which topped the US Billboard Hot 100. Music videos for all five singles were also produced, while West supported the album with a promotional concert tour, leading to the live album Late Orchestration in 2006.
+            A widespread critical success, Late Registration was viewed as a vast progression from The College Dropout and a pivotal release in hip hop. Reviewers praised its elegant and ambitious musical direction while highlighting West's songwriting and performances for their balance of pop and conscious rap sensibilities. The album appeared on numerous year-end critics polls, being ranked as 2005's best album in Rolling Stone, Time, and the nationwide Pazz & Jop, while earning West eight Grammy Award nominations, including for Album of the Year and a win for Best Rap Album. Its success elevated West from a successful hip hop producer to an innovative and culturally relevant recording artist in his own right. Among his most acclaimed works, Late Registration frequently appears on professional lists of top albums, including Rolling Stone's "500 Greatest Albums of All Time", on which it ranked 117th in 2020.</p>
+        
+        </div>
+        
+        <h3 id = "igor">IGOR</h3>
+        
+        <div>
+
+            <img src = "../JQUERY/firstPage images/IgorTylerjpg.jpg" alt = "Igor">
+        
+            <p class = "size">Igor is the fifth studio album by American rapper and producer Tyler, the Creator. It was released on May 17, 2019, through Columbia Records.
+            Produced entirely by Tyler himself, the album features guest appearances from Playboi Carti, Lil Uzi Vert, Solange, Kanye West, and Jerrod Carmichael. Preceding the release of Flower Boy (2017), the album was primarily recorded in California, with recording sessions also being held in Lake Como, Italy, and Atlanta between 2017 and 2019.
+            Music journalists have noted that Igor continues to build on the hip hop and neo soul sound established in Flower Boy, while also incorporating R&B and funk influences. Critics have noted the album's use of synthesizers and low-mixed vocals. Thematically, Igor follows a narrative of a love triangle between the titular character and his male love interest. The album employs the "Igor" literary archetype to explore themes associated with love, such as heartbreak, loss, and jealousy.
+            To help market the album, Tyler, the Creator released the single "Earfquake", which reached number 13 on the US Billboard Hot 100, becoming his highest charting single. In its first week of release, Igor debuted at number one on the US Billboard 200, moving 165,000 album-equivalent units and becoming Tyler, the Creator's first US number-one album. It was a widespread critical success, being named among the best albums of 2019 in many publications' year-end lists, and won Best Rap Album at the 2020 Grammy Awards.</p>
+        
+        </div>
+
+        <h3 id = "end">THE E.N.D.</h3>
+        
+        <div>
+
+            <img src = "../JQUERY/firstPage images/TheEND.png" alt = "THE E.N.D.">
+        
+            <p class = "size">The E.N.D. (an abbreviation of, and subtitled The Energy Never Dies) is the fifth studio album by American group Black Eyed Peas, released on June 3, 2009. Critics described the album as containing more anthemic and inspirational songs in the group's bid to appeal to a new generation of music listeners.
+            Three promotional singles, "Imma Be", "Alive" and "Meet Me Halfway", were released through the iTunes Store in the three weeks running up to the album's release. The album gave the group their first, second, and third US number one hits with "Boom Boom Pow", "I Gotta Feeling", and "Imma Be" which topped the Billboard Hot 100 for 12, 14, and 2 weeks respectively. "Boom Boom Pow" and "I Gotta Feeling" led the Hot 100 back to back, putting the band at number 1 on the chart for a record-breaking 26 consecutive weeks (half a year). The third single, "Meet Me Halfway", along with the first two, topped several charts around the world including the United Kingdom and Australia. As of June 2011, the album has sold over 11 million copies worldwide, making it one of the biggest commercial successes for the music industry in recent years.[2]
+            The E.N.D. was nominated for six Grammy Awards in 2010, including Album of the Year, and Record of the Year for "I Gotta Feeling", and won the award for Best Pop Vocal Album. To promote the album, the band embarked on The E.N.D. World Tour between September 2009 and November 2010.</p>
+
+        </div>
+
+        <h3 id = "gkmc">good kid m.A.A.d. city</h3>
+            
+        <div>
+
+            <img src = "../JQUERY/firstPage images/KendrickGKMC.jpg" alt = "good kid m.A.A.D. city">
+            
+            <p class = "size">Good Kid, M.A.A.D City (stylized as good kid, m.A.A.d city) is the second studio album by American rapper Kendrick Lamar. It was released on October 22, 2012, through Top Dawg Entertainment, Aftermath Entertainment and Interscope Records. The album features guest appearances from Drake, Dr. Dre, Jay-Z, Jay Rock, Anna Wise, and MC Eiht. It is Lamar's major label debut, after his independently released first album Section.80 in 2011 and his signing to Aftermath and Interscope the following year.
+            Good Kid, M.A.A.D City was recorded mostly at several studios in California, with producers such as Dr. Dre, Just Blaze, Pharrell Williams, Hit-Boy, Scoop DeVille, Jack Splash, and T-Minus, among others, contributing to the album. Billed as a "short film by Kendrick Lamar" on the album cover, the concept album follows the story of Lamar's teenage experiences in the drug-infested streets and gang lifestyle of his native Compton. The album earned Lamar four Grammy Award nominations at the 2014 Grammy Awards, including Album of the Year.
+            The album was supported by five singles – "The Recipe", "Swimming Pools (Drank)", "Backseat Freestyle", "Poetic Justice", and "Bitch, Don't Kill My Vibe". All five singles achieved chart success of varying degrees. Lamar also went on a world tour between May and August 2013, featuring the other members of the hip hop collective, Black Hippy.
+            Good Kid, M.A.A.D City received widespread acclaim from critics, who praised its thematic scope and Lamar's lyrics. The album debuted at number two on the US Billboard 200, selling 242,000 copies in its first week – earning the highest first-week hip hop album sales of 2012 from a male artist. It became Lamar's first album to enter the UK Albums Chart, peaking at number 16, and entering the UK R&B Albums Chart at number two. The album was also named to many end-of-the-year lists, often topping them. It was later certified triple platinum by the Recording Industry Association of America (RIAA). In 2020, the album was ranked 115th on Rolling Stone's updated list of the 500 Greatest Albums of All Time.</p>
+            
+        </div>
+
+        <h3 id = "wlr">Whole Lotta Red</h3>
+            
+        <div class = "size">
+
+            <img class = "alingimg" src = "../JQUERY/firstPage images/wlrcarti.png" alt = "Whole Lotta Red" height = "60%" width = "40%">
+            
+            <p>Whole Lotta Red is the second studio album by American rapper Playboi Carti. It was released on December 25, 2020, by Interscope Records as well as ASAP Rocky's AWGE label. Work on the album commenced in late 2018 and concluded in November 2020. The album consists of 24 tracks and features guest appearances from Future, Kanye West, and Kid Cudi. The album was executive produced by West, who also appears on the song "Go2DaMoon". Production was also handled by Carti's frequent collaborator and producer Pi'erre Bourne, along with Maaly Raw and Wheezy, among others.
+            Whole Lotta Red received mostly positive reviews from music critics. The album debuted atop the US Billboard 200, earning 100,000 album-equivalent units of which 10,000 were pure sales, becoming Carti's first US number-one album.</p>
+            
+        </div>
+      
+    </div>
+
+    <p>select date for album drop: <input type = "text" id = "datepicker"></p>
+
+    <div id = "progessCss">
+        <div id = "progressbar"></div>
+    </div>
+
+    <div id = "dialog" title = "File Download">
+        <div class = "progress-label">starting download...</div>
+        <div id = "progressbar"></div>
+    </div>
+    
+    <br/>
+
+    <button id = "downloadButton">download DONDA 2</button>
+
+</body>
+</html>
